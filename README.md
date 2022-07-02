@@ -1,2 +1,2 @@
 # Ejercicios-JS
-Reposittorio dedicado a la resolucion de ejercicios con JavaScript
+Repositorio dedicado a la resolucion de ejercicios con JavaScript
