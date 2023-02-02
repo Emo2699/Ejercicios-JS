@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas</title>
+    <script>
+        //Documentacion en Mozilla Developer Network
+        /*Numeros en JS*/
+        // let a = 2; //Asignacion a una variable un dato de tipo numerico
+        // let b = new Number(1); //Creacion de una variable de tipo numerico por medio de constructor
+
+        //metodo toFixed(n) especifica el numero de decimales que tendra nuestro numero
+
+        //parseInt(n) te devuelve la parte entera del numero, tambien se puede usar para castear de string a number
+
+        //parseFloat(n) regresa la parte entera y decimal de un numero
+
+        //typeof(n) regresa el tipo de dato de una varible n 
+
+        /*      Datos Booleanos     */
+        // let v = true;
+        // let f = false;
+        // console.log(v);
+        // console.log(f);
+
+        // console.log(typeof(v));
+        // console.log(typeof(f));
+
+        //Buscar mdn truthy
+
+
+        /*Valores primitivos de JS*/
+        //let x;
+        //console.log(x);
+        //undefined --> variable sin valor, no se ha inicializado
+
+        //null --> valor de ausencia, que no tiene referencia a algo, tambien es un valor que le podemos asignar a una variable
+
+        //NaN --> Not a Number
+
+
+        /*Funciones en JS*/
+        //Funcion declarada
+        function estoEsUnaFuncion(){
+            console.log("Uno");
+            console.log("Dos");
+            console.log("Tres");
+        }
+
+        function funcionConRetorno() {
+            return "La funcion ha regresado una String"
+        }
+
+        //Tambien podemos asignar valor por defecto a los parametros de las funciones
+        function funcionConParametros(a,b){
+            //console.log(a);
+            //console.log(b);
+            console.log("El numero a es "+a+" y el numero b es "+b)
+        }
+
+        /*Las funciones tienen una gran prioridad en JS, asi que no importa
+        el orden en que la definas y la
+        mandes a llamar, todo se ejecutara sin problemas*/
+
+        //funcion anonima
+        const funcionExpresada = function(){
+            console.log("Esto es una funcion anonima o expresada");
+        }
+
+        /*NOTA: En el caso de las funciones anonimas, primero se deben de declarar 
+        y despues mandar a llamar, ya que si no se hace así, ocurre un error*/
+        
+        
+        
+        //Invocacion de la funcion
+        //estoEsUnaFuncion();
+
+        //let retorno = funcionConRetorno();
+        //console.log(retorno);
+
+        //funcionConParametros(5,7);
+        //funcionExpresada();
+
+
+
+        /*      Arreglos en JS      */
+        //let array = [1,true,"holi",[1,2,3]];
+        //console.log(array);
+        //array.length --> regresa la longuitud del arreglo, 
+        //las posiciones del arreglo comienza en 0
+        //console.log(array[2]);
+
+        //Si tenemos un arreglo dentro de un arreglo se accde de esta forma 
+        //console.log(array[3][2]);
+
+        //let array2 = Array.of("X",2,false);
+        //console.log(array2);
+
+        /*Se puede declarar un arreglo de cierto tam y rellenarlo con un valor
+        en especifico*/
+
+        // let array3 = Array(10).fill("1");
+        // console.log(array3);
+
+        /*Metodos en arreglos
+        push() --> agrega un elemento
+        pop() --> quita un elemento
+        forEach( function (elemento o valor,indice){
+            hace algo por cada elemento del 
+            arreglo
+        })
+        */
+
+
+        /*      Objetos en JS       */
+        //En los objetos tambien se puede usar this
+        // const persona = {
+        //     nombre: "Erick",
+        //     apellido: "Ramirez",
+        //     edad: 23,
+        //     pasatiempos: ["Ver tv", "Jugar", "Dormir"],
+        //     //puede haber un objeto dentro de otro
+        //     contacto: {
+        //         email: "eramirezm@live.com",
+        //         tel: "45454545",
+        //         face:"que hueva XD"
+        //     },
+        //     salduar: function(){
+        //         console.log("Hola dice la persona :3");
+        //     }
+        // }
+        // console.log(persona)
+        // console.log(persona.edad);
+        // console.log(persona.contacto.face)
+        // persona.salduar()
+
+        /*Metodos importante del objeto Object
+        Object.keys(n) --> lista todas las llaves o atributos del objeto n
+        Object.values(n) --> lista todos los valores de cada atributo del objeto n
+        objeto.hasOwnProperty("x") -->Verifca si el objeto tiene la propiedad x
+
+        */
+
+        /*  Manejo de errores o excepciones */
+        // try{
+        //     Sentencias a ejecutar
+        // }catch(error){
+        //     bloque que se ejecuta en caso de que haya un error
+        // }finally{
+        //     bloque que se ejecuta SIEMPRE, sin importar que haya error o no
+        // }
+
+        /*
+            En JS podemos crear errores personalizados de la siguiente forma
+
+            throw new Error("Mensaje del error ")
+        */
+        /*Uso de break y continue en JS*/
+
+        // const numeros = [1,2,3,4,5,6,7,8,9,0];
+        // for(let i = 0; i < numeros.length; i++){
+        //     if(i === 5){
+        //         break;
+        //     }
+        //     console.log(numeros[i]);
+        // }
+        // for(let i = 0; i < numeros.length; i++){
+        //     if(i === 5){
+        //         continue;
+        //     }
+        //     console.log(numeros[i]);
+        // }
+
+        /*Operador ternario en  JS*/
+        // let a = 6;
+        // a === 5 ? console.log("yes"):console.log("no")
+
+        /*  Destructuracion en JS   */
+        //Podemos descomponer objetos u arreglos en variables de la siguiente forma
+
+        // const arreglo = [1,2,3];
+        /*En este caso creamos 3 variables por cada elemento del arreglo "arreglo"*/
+        // let [one,two,three] = arreglo;
+        // console.log(one)
+        // console.log(two)
+        // console.log(three)
+
+        // /*Tambien funciona en objetos*/
+        // let persona = {
+        //     nombre:"Erick",
+        //     apellido: "Rmz",
+        //     edad: 23
+        // }
+
+        // let{nombre,apellido,edad} = persona;
+        // console.log(nombre,apellido,edad)
+        /*En el caso de los objetos, las variables deben de llamarse 
+        igual que la propiedad del objeto a la que hacen 
+        referencia para que funcione
+        
+        Ademas de que el orden no afecta
+
+        let{nombre,edad,apellido} = persona;
+        la asignacion de arriba igual funciona, ya que en JS solo busca por nombre de la propiedad para crear 
+        una nueva variable
+        */
+
+        /*Objetos literales*/
+        /*Para crear un objeto con variables que ya existen podemos hacerlo de la siguiente forma*/
+
+        // let nombre ="Atreus";
+        // let raza = "Husky";
+        // const perro = {
+        //     nombre,
+        //     raza
+        // }
+        // console.log(perro)
+
+        /*Para agregar un nuevo atributo se hace de la forma normal*/
+        // const perro = {
+        //     nombre,
+        //     raza,
+        //     edad: 35
+        // }
+        //console.log(perro);
+        /*Para agregar un metodo se hace de la siguiente forma*/
+        // const perro = {
+        //     nombre,
+        //     raza,
+        //     edad: 35,
+        //     ladrar(){
+        //         console.log("guau guau")
+        //     }
+        // }
+        // console.log(perro)
+        // perro.ladrar()
+
+
+        /*Parametros REST*/
+        /*Muy utiles en funciones donde trabajan con los parametros que uno recibe, sinn embargo
+        no sabemos con exactitud la cantidad de parametros que recibiremos
+        */
+    //    function suma(a,b,...c){
+    //     let resultado = a + b;
+    //     //Por cada elemento n del arrreglo c ejeccutaremos la funcion anonima
+    //     c.forEach(function(n){
+    //         resultado += n
+    //     });
+    //     return resultado;
+    //    }
+
+    //    console.log(suma(1,2))
+    //    console.log(suma(1,2,3,4,5,6,7,8,9))
+
+    /*Operador Spread*/
+    //En terminos simples ayuda a expandir cierta expresion
+    /*Ejemplo
+        Tenemos dos arreglos independientes y queremos crear uno nuevo juantando los elementos de cada uno de los arreglos iniciales
+        para esto se usaria el spread operator
+        en lugar de hacer push a uno de los arreglos inciales
+    */
+//    const array1 = [1,2,3,4,5]
+//    const array2 = [6,7,8,9,0]
+//    const array3 = [...array1,...array2]
+//    console.log(array3)
+
+
+    /*      Arrow Functions     */
+    //Funcion expresada --> funcion asignada a una variable, la funcion es anonima
+
+    // const saludo = function(){
+    //     console.log("hola")
+    // }
+    // saludo();
+
+    /*Una arrow function es una forma de escribir una funcion anonima*/
+    //Ejemplo
+    // const suma = function(a,b){
+    //     return a+b;
+    // }
+    // console.log(suma(8,9))
+
+    // //En arrow function
+    // const suma2 = (a,b)=>{
+    //     console.log(a+b)
+    // }
+    // suma2(8,9)
+    
+    /*Si nuestra funcion anonima tiene un solo parametro puede escribirse asi */
+    // const saludo2 = nombre => console.log('Hola '+nombre)
+    // saludo2("Erick")
+
+    /*Notese que si solo tiene un parametro, se pueden omitir los "()" que especifican 
+    que es una funcion, sin embargo si lleva mas de uno o ninguno es necesario los "()"*/
+    // const saludo3 = () => console.log("Holi")
+    // saludo3()
+    /*Notese que si la funcion solo tiene una instruccion 
+    no es necesario las llaves "{}", y el return ya esta implicito en la arrow function
+    sin embargo, si la funcion lleva mas de una instruccion, son necesarias las llaves
+    "{}"*/
+
+    //ES MALA PRACTICA USAR ARROW FUNCTIONS EN DECLARACION DE METODOS EN OBJETOS
+
+    
+
+    </script>
+</head>
+<body>
+    <h1>Pruebas con JS</h1>
+</body>
+</html>
