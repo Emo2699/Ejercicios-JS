@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mas teoria</title>
+    <script>
+        /*Funciones Anonimas AutoEjecutables.*/
+        /*Como ejecutamos una funcion???
+            nombre_funcion();
+
+
+        Como definimos una funcion
+        
+            nombre_funcion(parametros){definicion de funcion}
+
+        Entonces una funcion anónima autoejecutable es sustituir la definicion de una funcion en la
+        primer parte de invocacion de defincion y como
+        es anonima, no le ponemos nombre
+            // nombre de funcion a ejecutar     | parentesis
+            (function (){definicion de funcion}) ();
+
+            NOTA: Aqui es importante separar la primera parte en parentesis para que funcione.
+            Ademas de que es necesario, forzosamente el punto y coma.
+        
+            IIFE -> Inmediatly Invoked Function Expressed
+        */
+
+        //Funcion sin parametros
+        // (function (){
+        //     console.log("Hola mundo desde funcion anonima auto Ejecutable");
+        // })();
+
+        //Funcion con parametros
+        /*Este patron fue muy popular cuando se trabajaba con pluggins en JQuery*/
+        // (function (d,w,c){
+        //     console.log(d);
+        //     console.log(w);
+        //     c.log("Estoy imprimiendo con ayuda del parametro");
+        // })(document,window,console);
+
+        //Otras formas de escribir IIFE's
+        //La Crockford
+        // ((function (){
+        //     console.log("Version de Crockford");
+        // })());
+
+        //Unaria
+        // +function(){
+        //     console.log("Version Unaria");
+        // }();
+
+        //Facebook
+        // !function(){
+        //     console.log("Version Facebook");
+        // }();
+
+
+        /*      Modulos Import y Export     */
+        /*
+            Aqui ya podemos hacer que archivos propios de JS
+            importen y exporten otros archivos.
+            para esto utilizamos las palabras import y export
+
+            import -> obtenemos algo de otro archivo.
+
+            import {lo que queremos} from "./ruta del archivo"
+
+            export -> definimos lo que enviamos a otro archivo
+
+            export let x = algo;
+            export const PI = algo;
+            export function(){};
+            export class Persona{}
+
+            Existen importaciones y exportaciones por defecto, agregando la palabra reservada default en la exportacion
+
+            export default function(){}
+            export default class Algo{}
+
+            en la importacion, lo que importamos va antes de los parentesis de destructuracion 
+
+            import importacion_default{} from "./ruta"
+
+            NOTA: para las variables, contantes y funciones expresadas la exportacion por default es diferente, primero se declaran las cosas y despues se hace la exportacion.
+
+            SOLO PUEDE HABER UNA EXPORTACION POR DEFAULT EN UN ARCHIVO
+
+        
+        */
+
+
+    </script>
+</head>
+<body>
+    <h1>Contenido</h1>
+    <ul>
+        <li>Funciones Anonimas Autoejecutables</li>
+        <li>Modulos Import y Export</li>
+    </ul>
+
+    <p>Para importar archivos js a un html se hace con la etiqueta script, agregando el parametro src, donde colocamos la ruta del archivo a importar</p>
+
+    <p>Ademas, para que ese archivo tenga la posibilidad de importar más archivos JS por si mismo, agregamos en la etiqueta script el parametro type="module"
+    Con esto ya especificamos que el archivo que carga el HTML sera modulo y pordra importar otros archivos     
+    </p>
+    <p>
+        <strong>
+            NOTA: Todos los archivos JS que importe el HTML deben de ir antes de la etiqueta de cierre del body
+        </strong>
+    </p>
+</body>
+</html>
