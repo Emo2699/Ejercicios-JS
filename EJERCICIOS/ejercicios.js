@@ -136,7 +136,39 @@ function invertir(cadena){
 //invertir("hola");
 
 /*      PROBLEMA 6      */
-
+function problema6(cadena_larga, cadena_buscada){
+    if(typeof(cadena_larga) != 'string' || typeof(cadena_buscada) != 'string'){
+        console.error("Los parametros son incorrectos -_-");
+        return;
+    }
+    /*Validamos si la cadena larga tiene coma, en caso 
+    que sea asi, las remplazamos con una cadena vacia
+    como no podemos modificar los valores de los
+    argumentos, usaremos una variable auxiliar
+    */
+    let aux = "";
+    if(cadena_larga.search(",")){
+        aux = cadena_larga.replaceAll(",","");
+    }
+    //console.log(aux);
+    /*Aqui la cadena larga la separaremos en un arreglo,
+    donde el separador para cada elemento del arreglo
+    es cuando encuentre un espacio en la cadena larga
+    */
+    let arreglo = aux.split(" ");
+    /*Ahora buscamos dentro del arreglo y vamos comparando
+    cada uno de sus elementos con la cadena buscada y con 
+    la ayuda de una variable auxiliar vamos contando
+    las veces que coincidan en la comparacion
+    */
+    let resultado = 0;
+    arreglo.forEach(elemento => {
+        if(elemento === cadena_buscada)
+            resultado++;
+    });
+    console.log(resultado);
+}
+//problema6("Hola mundo, Adios mundo, ya me quiero ir mundo","mundo");
 
 /*      PROBLEMA 7      */
 const problema7 = (cadena)=>{
@@ -268,7 +300,85 @@ const problema14 = ()=>{
 
 
 /*      PROBLEMA 15     */
-const problema15 = (monto,porcentaje)=>{
+function conversion_binaria_decimal(){
+    opcion = prompt("Ingresa 1 para convertir de Decimal a Binario\nIngresa 2 para convertir de Binario a Decimal")
+
+    let numero,resultado = "";
+    switch(opcion){
+        case "1":
+            //      Decimal a Binario
+            /*Al numero lo necesitamos convertir a tipo de dato number para operar con él*/
+            numero = parseInt(prompt("Ingresa el numero a convertir:"));
+            
+            while(Math.trunc(numero / 2) != 0){
+                resultado+= (numero%2).toString();
+                numero = Math.trunc(numero /2);
+            }
+            /*Al terminar el bucle aun falta añadir a
+            la cadena resultado el modulo de la 
+            division 1/2. Por eso lo agregamos
+            */
+            resultado+= (numero%2).toString();
+            /*En este punto ya tenemos la cadena binaria
+            correspondiente a la conveersion, ahora solo
+            falta invertirla ya que con el proceso
+            anterior la fuimos guardando al revés.
+            Nos apoyaremos de la funcion del problema 5
+            para voltearla*/
+
+            invertir(resultado);
+            break;
+        case "2":
+            //      Binario a Decimal
+            numero = prompt("Ingresa el numero en BINARIO a convertir:");
+            /*Para este proceso trabajaremos con la cadena de forma invertida a como la meta el usuario,
+            Esto debido a que las personas estas acostumbradas
+            a escribir los numeros binarios de tal forma
+            en que los numeros con mayor potencia estan a la izquierda, pero al convertirlo a decimal es más conveniente hacerlo con la cadena invertida*/
+
+            let aux = "";
+            for(let i = numero.length-1; i > -1; i--){
+                aux+=numero[i];
+            }
+            /*Comenzamos con el proceso de conversion*/
+            let decimal = 0;
+            for(let j in aux){
+                if(aux[j] === "1"){
+                    decimal+= Math.pow(2,j);
+                }
+            }
+            console.log(decimal);
+            break;
+        default:
+            console.error("Opcion Incorrecta -_-");        
+    }
+
+}//Fin de la funcion
+
+//conversion_binaria_decimal();
+
+/*Otra forma de hacer la conversion*/
+/*En esta funcion no hay necesidad de voltear la cadena recibida
+unicamente nos apoyamos con una variable auxiliar
+para ir controlando las potencias.*/
+function Decimal_binario(numero){
+    if(typeof(numero) != 'string'){
+        console.error("El tipo de dato es incorrecto -_-");
+        return;
+    }
+    let aux = numero.length-1, i, resultado = 0;
+    for(i in numero){
+        if(numero[i] === "1"){
+            resultado+=Math.pow(2,aux);
+        }
+        aux--;
+    }
+    console.log(resultado);
+}
+//Decimal_binario("1101");
+
+/*      PROBLEMA 16     */
+const problema16 = (monto,porcentaje)=>{
     if(typeof(monto) != 'number' || typeof(porcentaje) != 'number'){
         console.error("Los argumentos ingresados no son del tipo number");
         return;
@@ -280,4 +390,6 @@ const problema15 = (monto,porcentaje)=>{
     let descuento = (monto * porcentaje) / 100;
     console.log("El monto final es: "+(monto - descuento));
 }
-//problema15(200,40);
+//problema16(200,40);
+
+
