@@ -190,9 +190,27 @@ const problema7 = (cadena)=>{
 
 
 /*      PROBLEMA 8      */
+//Version en arrow function
+const problema8 = (cadena,patron)=>{
+    if(typeof(cadena) != 'string'){
+        console.error("La cadena no es de tipo string -_-");
+        return;
+    }
+    let regex = new RegExp(patron,"g");
+    let aux = "";
+    if(cadena.search(patron)!= -1){
+        aux = cadena.replaceAll(regex,"");
+    }
+    console.log(aux);
+}
+//problema8("xyz1, xyz2, xyz3, xyz4 y xyz5","yz");
 
+/*
+    NOTA: Visitar el siguiente enlace para conocer mas sobre el uso de expresiones regulares.
+    https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions
 
-
+    https://www.arkaitzgarro.com/javascript/capitulo-11.html
+*/
 
 /*      PROBLEMA 9      */
 function aleatorio(minimo,maximo){
@@ -393,3 +411,73 @@ const problema16 = (monto,porcentaje)=>{
 //problema16(200,40);
 
 
+//      MANEJO DE FECHAS EN JS
+//en fechas se trabaja con formato año,mes,dia 
+/*NOTA: Para crear un dato de tipo Date en JS, lo podemos
+hacer a partir de una cadena con el formato 
+YYYY/MM/DD o YYYY-MM-DD
+
+OJO: Al hacer unas pruebas en como meter las fechas con
+los formatos anteriores se observó que hay diferencia
+en el resultado al meter los meses en formato de dos digitos
+
+Ejemplo: si metemos 2023-3-17 el resultado arroja
+        Friday Mar 17 2023 (que seria a como viene en 
+        el calendario para nosotros, es decir, el Mexicano en CDMX) aqui marca las 0:00 horas
+    
+        si metemos 2023-03-17, el resultado es
+        Thursday Mar 16 2023,con la hora marcada en las 18:00
+        
+        Entonces hay que tener cuidado, por ahora se observa
+        que lo mas recomendable es meter los meses con un 
+        solo dígito.
+
+Otra forma de ingresar la fecha es con el formato 
+MM/DD/2023 o MM-DD-YYYY, en este caso al probar meter
+los meses con dos dígitos como en el jemplo explicado 
+anteriormente, no hay problema en diferencia de horas
+
+este formato de fecha es el de US
+
+JS tambien acepta la abreviatura de años en dos digitos YY
+*/
+// let fecha_en_string = "3/17/2023";
+// let fecha = new Date(fecha_en_string);
+// console.log(fecha.getFullYear());
+/*      PROBLEMA 17     */
+const problema17 = (fecha)=>{
+    
+    let date = new Date(fecha);
+    let anio = date.getFullYear(),ahora = new Date().getFullYear();
+    if(ahora < anio){
+        console.error("Error en la fecha ingresada");
+        return;
+    }
+    else
+        console.log(ahora - anio);
+}
+//problema17("2/26/2025");
+
+/*      PROBLEMA 18     */
+const problema18 = (cadena)=>{
+    if(typeof(cadena) != 'string'){
+        console.error("La cadena ingresada no es una string");
+        return;
+    }
+    /*Crearemos dos arreglos donde guardaremos los
+    caracteres correspondientes a las vocales y a las
+    consonantes
+    */
+    let vocales = ['a','e','i','o','u','A'];
+    let consonates = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
+    let minusculas = cadena.toLocaleLowerCase();
+    let vocal = 0, consonante = 0;
+    for(let i in minusculas){
+        if(vocales.includes(minusculas[i])){vocal++;}
+        else if(consonates.includes(minusculas[i])){
+            consonante++;
+        }
+    }
+    console.log("El numero de vocales es: "+vocal+"\nEl numero de consonantes es: "+consonante);
+}
+problema18("a");
