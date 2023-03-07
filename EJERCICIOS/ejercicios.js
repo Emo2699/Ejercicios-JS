@@ -480,4 +480,175 @@ const problema18 = (cadena)=>{
     }
     console.log("El numero de vocales es: "+vocal+"\nEl numero de consonantes es: "+consonante);
 }
-problema18("a");
+//problema18("a");
+
+/*      PROBLEMA 19     */
+/*Validacion de un nombre
+Para este ejercicio se esta tomando en cuenta 
+los posibles nombres en español, considerando
+las vocales con acentos, tanto en mayúsculas
+como en minusculas, asi como la letra ñ
+
+Ejemplo valido para la mayoria de los nombres
+mexicanos
+*/
+const problema19 = (nombre)=>{
+    if(typeof(nombre) != 'string'){
+        console.error("El nombre no es de tipo string -_-\n");
+        return;
+    }
+    let regex_nombre = /^[a-zA-Z\sáéíóúÁÉÍÓÚÑñ.]+$/;
+    regex_nombre.test(nombre)
+    ?console.log("Nombre Válido")
+    :console.error("Nombre Inválido -_-");
+}
+//problema19("Cualquier nombre :v");
+
+/*      PROBLEMA 20     */
+/*Validacion de correo
+al menos fuciona para los más comunes que
+se pueden llegar a encontrar. sin caracteres
+raros o de otro idioma. Enfocado a los
+correos que puede haber en español y en ingles
+*/
+const problema20 = (correo)=>{
+    if(typeof(correo) != 'string'){
+        console.error("El correo no es una string -_-");
+        return;
+    }
+    let regex_correo = /^[a-zA-Z0-9.\s-_]+@+[a-zA-Z0-9]+[a-z.]+$/;
+    regex_correo.test(correo)
+    ?console.log("Correo Válido 7u7r")
+    :console.error("Correo Inválido -_-");
+}
+//problema20("erick_hazel-96@fdsfnbdsmf.com.mx");
+//PUREBAS DE REGEX
+//let regex = /^[a-zA-Z0-9.\s-_]+@+[a-zA-Z0-9]+[a-z.]+$/
+//console.log(regex.test("erick_hazel-96@dominio.com.mx"));
+/*Video de explicacion sobre regrex
+https://www.youtube.com/watch?v=wfogZfIS03U
+*/
+
+
+//PROBLEMAS CON ARREGLOS
+/*      PROBLEMA 21     */
+function problema21(arreglo){
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let bandera = 0;
+    //Validacion del tipo numerico de los elementos
+    arreglo.forEach(elemento =>{
+        if(typeof(elemento) != 'number'){
+            console.error("Los elementos del arreglo no son numericos -_-");
+            bandera = 1;
+        }
+    });
+    if(bandera === 0){
+         //Arreglo auxiliar
+        let alCuadrado = [];
+        arreglo.forEach(elemento => alCuadrado.push(Math.pow(elemento,2)
+        ));
+        console.log(alCuadrado);
+    }
+}
+
+//let arreglo = [2,4,8,50];
+//problema21(arreglo);
+
+/*      PROBLEMA 22     */
+const problema22 = (arreglo)=>{
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let bandera = 0;
+    //Validacion del tipo numerico de los elementos
+    arreglo.forEach(elemento =>{
+        if(typeof(elemento) != 'number'){
+            console.error("Los elementos del arreglo no son numericos -_-");
+            bandera = 1;
+        }
+    });
+    if(bandera === 0){
+        let minimo = arreglo[0], maximo = arreglo[0];
+        //CICLO PARA ENCONTRAR EL NUMERO MENOR
+        arreglo.forEach(elemento =>{
+            if(minimo > elemento){minimo = elemento}
+            if(maximo < elemento){maximo = elemento}
+        });
+        console.log("El numero minimo es: "+minimo+"\nEl numero máximo es: "+maximo);
+    }
+}
+//let arreglo = [1,-2,3,-4,5,-6,7,-8,9.4,10.5];
+//problema22(arreglo);
+
+/*      PROBLEMA 23     */
+const problema23 = (arreglo)=>{
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let bandera = 0;
+    //Validacion del tipo numerico de los elementos
+    arreglo.forEach(elemento =>{
+        if(typeof(elemento) != 'number'){
+            console.error("Los elementos del arreglo no son numericos -_-");
+            bandera = 1;
+        }
+    });
+    if(bandera === 0){
+        let pares = [], impares= [];
+        arreglo.forEach(elemento =>{
+            if(elemento%2 === 0){pares.push(elemento)}
+            else{impares.push(elemento)}
+        });
+        console.log("Arreglo de pares: "+pares+"\nArreglo de impares: "+impares);
+    }
+}
+//let arreglo = [1,-2,3,-4,5,-6,7,-8,9.4,10.5];
+//problema23(arreglo);
+
+/*      PROBLEMA 25     */
+const problema25 = (arreglo) =>{
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let sinDuplicados = [];
+    arreglo.forEach(elemento => {
+        if(!sinDuplicados.includes(elemento)){
+            sinDuplicados.push(elemento);
+        }
+    });
+    
+    console.log(sinDuplicados);
+}
+let arreglo = ['a','c','a','b','b','c','d','a',1,2,1,20];
+problema25(arreglo);
+
+
+/*      PROBLEMA 26     */
+const problema26 = (arreglo)=>{
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let bandera = 0;
+    //Validacion del tipo numerico de los elementos
+    arreglo.forEach(elemento =>{
+        if(typeof(elemento) != 'number'){
+            console.error("Los elementos del arreglo no son numericos -_-");
+            bandera = 1;
+        }
+    });
+    if(bandera === 0){
+        let suma = 0, resultado=0;
+        arreglo.forEach(elemento => suma+=elemento);
+        resultado = suma / (arreglo.length);
+        console.log("El promedio es: "+resultado);
+    }
+}
+//let calificaciones = [8,10,6.2,10,10];
+//problema26(calificaciones);
