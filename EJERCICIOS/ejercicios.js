@@ -219,6 +219,24 @@ function aleatorio(minimo,maximo){
 // let res = aleatorio(501,600);
 // console.log(Math.round(res));
 
+/*      PROBLEMA 10     */
+const problema10 = (numero)=>{
+    if(typeof(numero) != 'number'){
+        console.error("El parametro no es un numero -_-");
+        return;
+    }
+    let bandera = 0, cadena = numero.toString();
+    let i,j = cadena.length -1;
+    for(i = 0; i < j; i++,j--){
+        if(cadena[i] != cadena[j]){
+            bandera = 1;
+            break;
+        }
+    }
+    bandera === 1 ? console.log("NO ES CAPICUA"):console.log("ES CAPICUA");
+}
+//problema10(14642);
+
 /*      PROBLEMA 11     */
 //version recursiva
 function factorial(numero){
@@ -444,6 +462,8 @@ JS tambien acepta la abreviatura de años en dos digitos YY
 // let fecha_en_string = "3/17/2023";
 // let fecha = new Date(fecha_en_string);
 // console.log(fecha.getFullYear());
+
+
 /*      PROBLEMA 17     */
 const problema17 = (fecha)=>{
     
@@ -610,6 +630,158 @@ const problema23 = (arreglo)=>{
 //let arreglo = [1,-2,3,-4,5,-6,7,-8,9.4,10.5];
 //problema23(arreglo);
 
+/*      PROBLEMA 24     */
+//      PROBLEMA DE ORDENACION
+/*Para ver los resultados de la ordenacion quicksort
+es importante descomentar la impresion del arreglo
+que viene abajo de las funciones quicksort
+ya que dichas funciones solo hacen el ordenamiento
+no imprimen el arreglo
+*/
+function problema24(arreglo){
+    if(!Array.isArray(arreglo)){
+        console.error("El argumento no es un arreglo -_-");
+        return;
+    }
+    let bandera = 0;
+    //Validacion del tipo numerico de los elementos
+    arreglo.forEach(elemento =>{
+        if(typeof(elemento) != 'number'){
+            console.error("Los elementos del arreglo no son numericos -_-");
+            bandera = 1;
+        }
+    });
+    
+    if(bandera === 0){
+        //ORDENAMIENTO BURBUJA
+        //burbuja_ascendente(arreglo);
+        //burbuja_descendente(arreglo);
+        
+        //ORDENAMIENTO QUICKSORT
+        //quickSort_ascendente(arreglo,0,arreglo.length-1);
+        //quickSort_descendente(arreglo,0,arreglo.length-1);
+        //console.log(arreglo);
+    }
+}
+/*      BURBUJA --> O(n^2)      */
+function burbuja_ascendente(arreglo){
+    let i,j,aux = 0;
+    for(i = 0; i < arreglo.length; i++){
+        for(j = 0; j < arreglo.length-1-i; j++){
+            if(arreglo[j] > arreglo[j+1]){
+                aux = arreglo[j+1];
+                arreglo[j+1] = arreglo[j];
+                arreglo[j] = aux;
+            }
+        }
+    }
+    console.log(arreglo);
+}//fin burbuja_ascendente()
+
+function burbuja_descendente(arreglo){
+    let i,j,aux = 0;
+    for(i = 0; i < arreglo.length; i++){
+        for(j = 0; j < arreglo.length-1-i; j++){
+            if(arreglo[j] < arreglo[j+1]){
+                aux = arreglo[j+1];
+                arreglo[j+1] = arreglo[j];
+                arreglo[j] = aux;
+            }
+        }
+    }
+    console.log(arreglo);
+}//fin burbuja_descendente
+
+
+/*      QUICK SORT --> O(n^2) Peor caso
+                   --> O(nlogn) Promedio de los casos
+
+    Para implementar quicksort, se implementa con recursion
+    y un modulo extra el cual es "ubicarPivote", este 
+    modulo es el más importante del algoritmo, en él
+    podemos definir si deseamos el ordenamiento ascendente
+    o descendente.
+*/
+
+function quickSort_ascendente(arreglo,ini,fin){
+    if((fin - ini) > 0){
+        let pivote = ubicarPivote_ascendente(arreglo,ini,fin);
+        //Quicsort izquierdo
+        quickSort_ascendente(arreglo,ini,pivote-1);
+        //Quicksort derecho
+        quickSort_ascendente(arreglo,pivote+1,fin);
+    }
+}//fin quickSort_ascendente
+
+function quickSort_descendente(arreglo,ini,fin){
+    if((fin-ini) > 0){
+        let pivote = ubicarPivote_descendente(arreglo,ini,fin);
+        //QuicSort izquierdo
+        quickSort_descendente(arreglo,ini,pivote-1);
+        //QuickSort derecho
+        quickSort_descendente(arreglo,pivote+1,fin);
+
+    }
+}//fin quickSort_descendente
+
+/*      UBICACION DE PIVOTE     */
+//ascendente
+function ubicarPivote_ascendente(arreglo,ini,fin){
+    // let ini = 0, fin = arreglo.length-1,aux = 0;
+    let aux = 0;
+    while(ini < fin){
+        //Verificacion derecha pivote = arreglo[ini]
+        while(arreglo[ini] <= arreglo[fin] && ini < fin){
+            fin--;
+        }
+        //Primer cambio
+        aux = arreglo[fin];
+        arreglo[fin] = arreglo[ini];
+        arreglo[ini] = aux;
+        //Verificacion izquierda pivote = arreglo[fin]
+        while(arreglo[fin] >= arreglo[ini] && ini < fin){
+            ini++;
+        }
+        //Segundo cambio
+        aux = arreglo[fin];
+        arreglo[fin] = arreglo[ini];
+        arreglo[ini] = aux;
+    } 
+    //console.log(arreglo);
+    return ini;
+}
+
+//descendente
+function ubicarPivote_descendente(arreglo,ini,fin){
+    let aux = 0;
+    while(ini < fin){
+        //Verificacion derecha pivote = arreglo[ini]
+        while(arreglo[ini] >= arreglo[fin] && ini < fin){
+            fin--;
+        }
+        //Primer cambio
+        aux = arreglo[fin];
+        arreglo[fin] = arreglo[ini];
+        arreglo[ini] = aux;
+        //Verificacion izquierda pivote = arreglo[fin]
+        while(arreglo[fin] <= arreglo[ini] && ini < fin){
+            ini++;
+        }
+        //Segundo cambio
+        aux = arreglo[fin];
+        arreglo[fin] = arreglo[ini];
+        arreglo[ini] = aux;
+    } 
+    return ini;
+}
+
+// let prueba = [6,5,3,1,8,6,7,2,4];
+// problema24(prueba);
+
+
+
+
+
 /*      PROBLEMA 25     */
 const problema25 = (arreglo) =>{
     if(!Array.isArray(arreglo)){
@@ -625,8 +797,8 @@ const problema25 = (arreglo) =>{
     
     console.log(sinDuplicados);
 }
-let arreglo = ['a','c','a','b','b','c','d','a',1,2,1,20];
-problema25(arreglo);
+//let arreglo = ['a','c','a','b','b','c','d','a',1,2,1,20];
+//problema25(arreglo);
 
 
 /*      PROBLEMA 26     */
