@@ -156,33 +156,33 @@
         similar a un objeto primitivo
         MAP = Dato complejo
         */
-        let mapa = new Map();
+        //let mapa = new Map();
 
         //agregar valores al Map en formato clave:valor
-        mapa.set("nombre","Jon");
-        mapa.set("edad",35);
-        mapa.set("email","prueba@gmail.com");
+        // mapa.set("nombre","Jon");
+        // mapa.set("edad",35);
+        // mapa.set("email","prueba@gmail.com");
         
-        console.log(mapa);
+        //console.log(mapa);
         /*Nota: Pareciera que es un arreglo el dato Map,
         sin embargo es un objeto iterador
         Tambien tiene la propiedada size para su tamaño
         */
-        console.log(mapa.size);//tamanio del mapa
+        //console.log(mapa.size);//tamanio del mapa
         //verificacion de posesion de una propiedad
-        console.log(mapa.has("nombre"));
-        console.log(mapa.has("apellido"));
+        //console.log(mapa.has("nombre"));
+        //console.log(mapa.has("apellido"));
 
         //Obtencion del valor de la clave pasada como parametro
-        console.log(mapa.get("nombre"));
+        //console.log(mapa.get("nombre"));
 
         /*Sobre escritura de valores en propiedades*/
-        mapa.set("nombre","Erick");
-        console.log(mapa.get("nombre"));
+        //mapa.set("nombre","Erick");
+        //console.log(mapa.get("nombre"));
 
         //Eliminacion de propiedad
-        mapa.delete("edad");
-        console.log(mapa);
+        //mapa.delete("edad");
+        //console.log(mapa);
         
         /*A diferencia de los Sets, aqui si se puede 
         apreciar el estado del Mapa antes y despues de una
@@ -191,25 +191,25 @@
 
         /*Recorrido del mapa*/
         /*Uso de destructuracion*/
-        for(let [llave,valor] of mapa){
-            console.log("Llave: "+llave+", Valor: "+valor);
-        }
+        //for(let [llave,valor] of mapa){
+            //console.log("Llave: "+llave+", Valor: "+valor);
+        //}
 
         /*Como se puede apreciar en el Mapa, las propiedades se guardan como cadenas de texto, sin embargo tambien pueden tener otro tipo de dato con
         su respectivo valor como una propiedad
         */
-        mapa.set(null,"nulo");
-        mapa.set(undefined,"Indefinido -_-");
-        mapa.set(19,"Entero");
-        console.log(mapa);
+        //mapa.set(null,"nulo");
+        //mapa.set(undefined,"Indefinido -_-");
+        //mapa.set(19,"Entero");
+        //console.log(mapa);
 
         /*Otra forma de inicializar un Mapa*/
-        const mapa2 = new Map([
-            ["nombre","Atreus"],
-            ["Edad",2],
-            ["Raza","Husky"]
-        ]);
-        console.log(mapa2);
+        // const mapa2 = new Map([
+        //     ["nombre","Atreus"],
+        //     ["Edad",2],
+        //     ["Raza","Husky"]
+        // ]);
+        // console.log(mapa2);
 
         /*Destructuracion para almacenar en un arreglo
         el nombre de todas las llaves del mapa, y en otro
@@ -224,10 +224,299 @@
         iterados por los metodos antes mencionados
 
         */
-       const llaves = [...mapa2.keys()];
-       const valores = [...mapa2.values()];
-       console.log(llaves);
-       console.log(valores);
+    //    const llaves = [...mapa2.keys()];
+    //    const valores = [...mapa2.values()];
+    //    console.log(llaves);
+    //    console.log(valores);
+
+       /*       WeakSets y WeakMaps     */
+       /* FUNCIONA COMO ARREGLO
+       Solo pueden almacenar referencias debiles, es decir, que 
+       las llaves son objetos. esto hace que el recolector de 
+       basura del navegador limpie en memoria ese espacio que 
+       ocupaban dichas referencias en el momento en que nosotros
+       ya no las ocupemos, lo que mejora el rendimiento de la 
+       aplicacion. 
+       CARACTERISTICAS.
+            * NO SON ITERABLES
+            * NO PODEMOS USAR CLEAR
+            * NO TIENEN SIZE
+        
+       */
+       //const ws = new WeakSet();
+       //no podemos inicializar el WeakSet como en el Set normal con valores en su instanciacion
+
+        //se le agregan despues.
+        // let valor1 = {"valor1":1};
+        // let valor2 = {"valor2":2};
+        // let valor3 = {"valor3":3};
+        
+        // ws.add(valor1);
+        // ws.add(valor2);
+        // console.log(ws);
+
+        // //Podemos ver si tiene un elemento
+        // console.log(ws.has(valor1));
+        // console.log(ws.has(valor3));
+
+        // //Eliminacion
+        // ws.delete(valor2);
+        
+        // console.log(ws);
+
+        // ws.add(valor2);
+        // ws.add(valor3);
+
+        // setInterval(()=>{
+        //     console.log(ws);
+        // },1000);
+
+        /*Ahora nulificaremos una de las referencias del WeakSet
+        con esto se puede apreciar como el recolector de basura 
+        del navegador eliminara dichas referencias
+        */
+
+        // setTimeout(()=>{
+        //     valor1 = null;
+        //     valor2 = null;
+        //     valor3 = null;
+        // },5000);
+        /*Con el codigo anterior se puede ver primero que el
+        WeakSet tiene sus 3 elementos iniciales, cuando se
+        ejecuta el timeOut(), la salida del WS se ve vacia
+        por lo que se entiende que ya se limpio en memoria.
+        */
+
+        /*Al igual que en WS, no podemos inicializar el 
+        WM desde su instanciacion, tienen que ser objetos
+        almacenados en variables.
+        FUNCIONA COMO OBJETO
+        */
+        // const wm = new WeakMap();
+        // let llave1 = {};
+        // let llave2 = {};
+        // let llave3 = {};
+
+        // wm.set(llave1,1);
+        // wm.set(llave2,2);
+        // console.log(wm);
+
+        //Podemos buscar referencia de un elemento
+        // console.log(wm.has(llave1));
+        // console.log(wm.has(llave2));
+        // console.log(wm.has(llave3));
+        //wm.set();
+        
+        ///Imprimimos valor de las llaves con get
+        // console.log(wm.get(llave1));
+        // console.log(wm.get(llave2));
+
+        //Eliminamos un elemento
+        // wm.delete(llave2);
+        // console.log(wm);
+
+        /*Al igual que en los WeakSets, podemos ver como el 
+        recolector de basura limpia la memoria cuando nulificamos
+        algunos de los elementos dentro del WM, nos podemos 
+        apoyar de los temporizadores para ver esta caracteristica
+        en consola.
+        
+        SU USO LO ENCONTRAMOS EN FRAMEWORKS COMO REACT, ANGULAR
+        Y ALGUNOS OTROS.
+        
+        */
+
+        /*      Iterables & Iterators     */
+        /*
+            Iterable = Elemento que se puede recorrer
+            puede ser una string,array,objeto,lista de nodos, etc.
+
+            Iterator = Elemento que nos ayuda a recorrer el 
+            objeto iterable.
+        */
+    //    const iterable = [1,2,3,4,5];
+    //    const iterador = iterable[Symbol.iterator]();
+        
+    //    console.log(iterable);
+    //    console.log(iterador);
+
+       /*El metodo next se parece mucho al metodo que se usa
+       en Java para obtener una consulta a una base de datos.
+       next en JS = resultset con next() en java
+       por llamada solo obtiene un elemento y normalmente es
+       el primero.
+       Es por ello que se usa un bucle para obtener todos los
+       elementos a la vez
+       */
+    //    console.log(iterador.next());
+    //    console.log(iterador.next());
+    //    console.log(iterador.next());
+       /*Es importante recordar que lo que devuelve next() es un
+       objeto con dos propiedades, el valor y done. Esta ultima
+       marca true cuando sea el ultimo elemento de la estructura
+       iterable, mientras no lo sea, marca false
+       Aporechando dicha propiedad podemos usar el siguiente ciclo
+       para obtener todos los elementos de la estructura.
+       */
+    //    let next = iterador.next();
+    //    while(!next.done){
+    //         console.log(next.value);
+    //         next = iterador.next();
+    //    }
+       /*Esto se puede hacer con cualquier elemento iterable.
+       Para más referencia ver el video siguiente.
+       
+       https://www.youtube.com/watch?v=N00DzBNPJEw&list=PLvq-jIkSeTUZ6QgYYO3MwG9EMqC-KoLXA&index=54
+
+       */
+        
+        /*      GENERATORS      */
+        /*Funcion que nos permite trabajar de forma más amigable
+        con los iterables y los iteradores.
+
+        En pocas palabras, un generator es una funcion a la 
+        cual podemos iterar
+        */
+        /*Para especificar que una funcion será un generator
+        le colocamos un * a lado de la palabra function
+        */
+        // function* iterable(){
+        //     yield "hola";
+        //     console.log("Hola desde la consola");
+        //     yield "hola2";
+        //     console.log("Otro hola con console.log");
+        //     yield "hola3";
+        //     yield "hola4";
+        // }
+        /*En los iteradores con cada next se obtennia un objeto
+        con valor y done y solo lo hacia por 1 objeto a la vez
+        En generadores lo haremos por cada yield que encontremos.*/
+
+        //let iterador = iterable();
+
+        /*Para recorrerlo lo hacemos de la siguiente manera*/
+        // for(let y of iterador){
+        //     console.log(y);
+        // }
+
+        /*Si lo vemos a manera de cursor, lo que hace el 
+        bucle anterior es ejecutar todo el codigo que pueda 
+        hasta que se encuentre con un yield, despues de eso
+        podemos decir que se detiene o retorna, sin embargo
+        el cursor se mantiene en donde se quedo*/
+
+        //Si agregamos a un array cada yield lo hacemos asi
+        // let arreglo = [...iterable()];
+        // console.log(arreglo);
+
+
+        /*      PROXIES     */
+        /*Se relacionan con POO, estos tambien son objetos,
+        sin embargo pueden asociarse a objetos literales.
+        Es decir, que si en POO en Java tenemos una clase
+        la cual es el molde para cualqquier objeto de dicha
+        clase, aqui en JS un proxie sera una "instancia" a 
+        partir de un objeto literal
+        */
+        /*Un proxi se puede entender como un mecanismo que nos
+        facilita hacer algunas validaciones sobre nuestro objeto
+        literal.
+        Otra cosa muy importante es que el proxi que sale a partir
+        de un objeto literal no solo es una copia, sino que 
+        mantiene un vinculo con el objeto literal, ocasionando
+        que si se hace un cambio en el proxi, se vea reflejado
+        en el objeto literal
+        */
+        
+        /*Para declarar un proxi su constructor recibe dos
+        parametros, el objeto en el cual se va a basar y un
+        objeto manejador, en el cual estaremos controlando
+        todo lo que pase en nuestro proxi*/
+
+        //creamos nuestro objeto literal base.
+        const persona = {
+            nombre:"",
+            apellido:"",
+            edad:0
+        }
+        // Creamos nuestro manejador del proxi
+        const manejador = {
+            //Dentro tenemos una funcion set donde podremos trabajar con el objeto recibido
+            //recibimos el objeto, sus propiedades y sus valores
+            set(obj,propiedad,valor){
+                //Aqui decimos que si al recibir un objeto
+                //le asignamos un valor a una de sus propiedades
+                //que guarde el cambio
+                obj[propiedad] = valor;
+            }
+        }
+
+        //Ahora creamos nuestro proxi
+        // let erick = new Proxy(persona,manejador);
+        // erick.nombre = "Erick";
+        // console.log(erick);
+        
+        /*Con lo que llevamos hasta aqui ya vemos que 
+        se han guardado los cambios y las propiedades que no se
+        modificaron se mantienen como lo estan en el objeto
+        literal.
+        */
+        // erick.email = "erickhazel@live.com";
+        // console.log(erick);
+        // console.log(persona);
+        /*Con esto se puede ver que se agrego una nueva 
+        propiedad al proxi, pero el cambio se ve reflejado
+        tambien en el objeto persona.
+        si quisieramos añadir reestricciones al proxi lo hacemos
+        en el objeto manejador.
+        */
+        const manejador2 = {
+            //Dentro tenemos una funcion set donde podremos trabajar con el objeto recibido
+            //recibimos el objeto, sus propiedades y sus valores
+            set(obj,propiedad,valor){
+                if(Object.keys(obj).indexOf(propiedad) === -1){
+                    return console.error("No se encuentra la pripiedad "+propiedad+" en el objeto -_-");
+                }
+                obj[propiedad] = valor;
+            }
+        }
+        // let erick = new Proxy(persona,manejador2);
+        // erick.nombre = "Erick";
+        // console.log(erick);
+        // erick.email = "erickhazel@live.com";
+        // console.log(erick);
+        // console.log(persona);
+        /*De la forma anterior podemos seguir agregando reestricciones y validaciones si queremos XD*/
+
+        /*      PROPIEDADES DINAMICAS     */
+        /*Suponiendo que en dado caso en un Objeto debo
+        agregarle más propiedades de acuerdo a los datos que 
+        recibo de una BD o un API esto se puede hacer de la
+        siguiente forma.
+        */
+        //Objeto vacio
+        const usuarios = {
+
+        }
+
+        /*Respuesta de una BD donde recibo en un arreglo los
+        nombres de los usuarios que estan registrados en mi
+        sistema
+        */
+        let respuestaBD = ["Erick", "Kary", "Elias", "Alan","Fer"];
+
+        /*Entonces en el objeto usuarios creare la propiedad
+        id por cada nombre o elemento del arreglo, usaremos la
+        posicion de cada nombre dentro del arreglo para identificar el id
+        */
+        //Veamos como luce el objetos antes de modificarlo
+        console.log(usuarios);
+        respuestaBD.forEach((nombre,indice) =>{
+            usuarios[`id_${indice}`] = nombre;
+        });
+        //objeto modificado
+        console.log(usuarios);
+        
     </script>
 </head>
 <body>
@@ -239,7 +528,8 @@
         <li>WeakSets & WeakMaps</li>
         <li>Iterables & Iterators</li>
         <li>Generators</li>
-        <!-- <li>Proxies</li> -->
+        <li>Proxies</li>
+        <li>Propiedades Dinamicas de Objetos</li>
 
     </ul>
 </body>
