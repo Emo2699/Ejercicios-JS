@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria 4 en JS</title>
+    <script>
+        /*Call, Apply y Bind*/
+        // this.lugar = "contexto global";
+
+        // function saludar(mensaje, persona){
+        //     console.log(`${mensaje} ${persona} desde el ${this.lugar}`);
+        // }
+        // //saludar();
+
+        // const obj = {
+        //     lugar: "contexto objeto",
+        // }
+        /*Los metodos call y apply nos ayuda a ejecutar 
+        contextos de la referrencia que se le pase como 
+        primer parametro a cada funcion.
+        estos se llaman a partir de otra funcion, por lo
+        que le primer parametro es el contexto a ejecutar
+        y los otros son los parametros de la funcion
+        normal.
+
+        La diferencia entre ellos es la forma en como se pasan
+        los parametros en call y applly
+        */
+        // saludar.call(obj,"Hola","Erick");
+        // saludar.call(null,"Hola","Erick");
+        // saludar.apply(obj,["Apply", "Atreus"]);
+        // saludar.apply(null,["Apply", "Atreus"]);
+
+        //bind -> enlace
+        // const persona1 = {
+        //     nombre: "Emo",
+        //     saludar: function (){
+        //         console.log(`Hola ${this.nombre}`);
+        //     }
+        // }
+        // persona1.saludar();
+
+        /*El metodo bind nos ayuda a enlazar los contextos 
+        del parametro que le pasemos, puede ser otra funcion,
+        un objeto, etc.
+        En este caso le pasaremos el objeto persona1, para que
+        la propiedad saludar de la persona2 ejecute el metodo
+        saludar de la persona1, mostrando el nombre que ya 
+        esta definido en el contexto de ese objeto.
+        */
+        // this.nombre = "Window"
+        // const persona2 = {
+        //     /*
+        //     persona1.saludar.bind(this) Imprime el contexto 
+        //     global
+
+        //     persona1.saludar.bind(persona1) Imprime el 
+        //     contexto del objeto persona1
+        //     */
+        //     saludar: persona1.saludar.bind(this)
+        // }
+        // persona2.saludar();
+
+        /*      JSON en JS      */
+        /*JavaScript Object Notation
+        Formato ligero de intercambio de datos.
+        Contribucion de Douglas Crockford
+        */
+        
+        // const json = {
+        //     cadena: "Erick",
+        //     numero: 24,
+        //     booleano: true,
+        //     arreglo: ["correr","saltar"],
+        //     objeto: {
+        //         email: "erickhazel@live.com",
+        //         telefono: "5544843417"
+        //     },
+        //     nulo: null,
+        // }
+
+        /*El JSON tiene un formato muy similar a lo que
+        conocemos en JS como objeto literal, tambien podemos
+        tener archivos JSON, sin embargo tiene otras reglas
+        de sintaxis, Revisar ejemploJson.JSON
+        TODAS LAS PROPIEDADES DEBEN DE IR ENTRE COMILLAS, LOS
+        VALORES DE CADA PROPIEDAD PUEDEN O NO IR ENTRE COMILLAS
+        */
+        /*Tenemos dos metodos que podemos usar con JSON
+        parse() y stringify()
+        */
+        //parse() -> De JSON a objeto o tipo de dato de JS
+        // console.log(JSON.parse("{}"));
+        // console.log(JSON.parse("13"));
+        // console.log(JSON.parse("true"));
+        // console.log(JSON.parse("[1,2,3,4,4,5]"));
+        // console.log(JSON.parse("null"));
+
+        //stringify() --> De JS a JSON
+        //console.log(JSON.stringify({})); //La salida es como una string
+
+        // console.log(JSON.stringify([]));
+        // console.log(JSON.stringify(5));
+        // console.log(JSON.stringify({x:3,y:10}));
+
+        /*Pare recordar, ver el video siguiente.
+        https://www.youtube.com/watch?v=d1XijkyZRvM&list=PLvq-jIkSeTUZ6QgYYO3MwG9EMqC-KoLXA&index=60
+        */
+
+        /*Libro recomendado para repasar JavaScript
+            Eloquent JavaScript
+
+            https://eloquentjavascript.net/
+        */
+
+    </script>
+</head>
+<body>
+    <h1>Teoria 4 en JS</h1>
+    <h3>Contenido</h3>
+    <ul>
+        <li>Call, apply, bind</li>
+        <li>JSON</li>
+        
+    </ul>
+
+    <p>En el curso se recomienda visitar el siguiente enlace para repasar lo básico de JavaScript
+
+    </p>
+    <a href="https://eloquentjavascript.net/"
+    target="_blank">Libro recomendado</a>
+</body>
+</html>
