@@ -1,0 +1,11 @@
+{
+    "cadena": "Erick",
+    "numero": 24,
+    "booleano": true,
+    "arreglo": ["correr","saltar"],
+    "objeto": {
+        "email": "erickhazel@live.com",
+        "telefono": "5544843417"
+    },
+    "nulo": null
+}
