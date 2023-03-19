@@ -824,3 +824,272 @@ const problema26 = (arreglo)=>{
 }
 //let calificaciones = [8,10,6.2,10,10];
 //problema26(calificaciones);
+
+
+
+/*      PROBLEMA 27     */
+/*Funciones auxiliares para la resolucion del problema*/
+function validarTiro(tiro){
+    /*En caso de que tenga alguna mayuscula la cadena, la pasaremos a 
+    minusculas para proceder a conocer el tiro.
+    */
+    let minusculas = tiro.toLowerCase();
+    switch(minusculas){
+        case "paper":
+            return "p";
+        break;
+        case "scissors":
+            return "s";
+        case "rock":
+            return "r";
+        default:
+            return -1;            
+    }
+}//fin validarTiro();
+
+function PiedraPapelTijeras(p1,p2){
+    if(p1 === p2){
+        console.log("Draw!!!!");
+        return;
+    }
+    switch(p1){
+        case "p":
+            (p2 === "r")
+            ?console.log("Player 1 won!!!!")
+            :console.log("Player 2 Won!!!");
+            break;
+
+        case "s":
+            (p2 === "p")
+            ?console.log("Player 1 won!!!!")
+            :console.log("Player 2 Won!!!");
+            break;
+
+        case "r":
+            (p2 === "s")
+            ?console.log("Player 1 won!!!!")
+            :console.log("Player 2 Won!!!");
+            break;
+    }
+}//fin PiedraPapelTijeras()
+
+function problema27 (jugador1,jugador2){
+    if(typeof(jugador1) != 'string' || typeof(jugador2) != 'string'){
+        console.error("Los argumentos recibidos no son de tipo string -_-");
+        return;
+    }
+    let player1 = validarTiro(jugador1),player2 = validarTiro(jugador2);
+    if(player1 === -1 || player2 === -1){
+        console.error("Uno de los jugadores ha realizado un tiro invalido -_-");
+        return;
+    }
+    PiedraPapelTijeras(player1,player2);
+}//fin problema27();
+
+// problema27("scissors","paper");
+// problema27("scissors","rock");
+// problema27("paper","paper");
+
+/*      PROBLEMA 28     */
+//FUNCIONES AUXILIARES
+function invertir2(cadena){
+    if(typeof(cadena) != 'string'){
+        console.error("La cadena no es una string -_-");
+        return;
+    }
+    let resultado="";
+    for(let i = cadena.length-1; i >-1;i--){
+        resultado+=cadena[i];
+    }
+    // console.log(resultado);
+    return resultado;
+}//fin
+
+function busquedaIzquierda(cadena,cadena2){
+    let bandera=false;
+    let nueva,tam = cadena.length-1;
+    while(bandera != true && tam != 0){
+        //quitamos una letra
+        nueva = cadena.substring(0,tam);
+        //Creamos una nueva Regex
+        let regex = new RegExp(nueva);
+        //Probamos
+        bandera = regex.test(cadena2);
+        //Actualizamos el valor de tam
+        tam--;
+    }
+    if(bandera === false){return -1;}
+    else{return nueva;}
+}
+
+//console.log(busquedaIzquierda("b","b"));
+
+function busquedaDerecha(cadena,cadena2){
+    let bandera = false;
+    let nueva,invertida,aux,tam = cadena.length-1;
+    while(bandera != true && tam != 0){
+        //Primero invertimos
+        invertida = invertir2(cadena);
+        //Quitamos el ultimo caracter
+        aux = invertida.substring(0,tam);
+        //Volvemos a invertir
+        nueva = invertir2(aux);
+        //Creamos una nueva regex
+        let regex = new RegExp(nueva);
+        //comprobamos
+        bandera = regex.test(cadena2);
+        tam--;
+    }
+    if(bandera === false){return -1;}
+    else{return nueva;}
+}
+
+//console.log(busquedaDerecha("b","b"));
+
+function busquedaPatron(cadena1,cadena2){
+    let coincidencia;
+    if(cadena1.length <= cadena2.length){
+        /*Si cadena 1 es menor en longuitud que cadena 2
+        entonces hay que ver si toda la cadena 1 asi como esta
+        es un patron de coincidencia dentro de la cadena 2
+        y es por eso que realizamos una primer prueba con RegExp
+        */
+        let regex = new RegExp(cadena1);
+        coincidencia = regex.test(cadena2);
+        if(coincidencia === true){return cadena1;}
+        else{
+            //Iniciamos busqueda por izquierda
+            coincidencia = busquedaIzquierda(cadena1,cadena2);
+            if(coincidencia !== -1){return coincidencia;}
+            else{
+                //Iniciamos busqueda por derecha
+                coincidencia = busquedaDerecha(cadena1,cadena2);
+                if(coincidencia !==-1){return coincidencia;}
+                else{return false;}
+            }
+        }
+    }//fin if(cadena1.length <= cadena2.length)
+    else{
+        /*Aplicamos lo mismo que arriba, solo que invirtiendo el orden
+        en los argumentos*/
+        let regex = new RegExp(cadena2);
+        coincidencia = regex.test(cadena1);
+        
+        if(coincidencia === true){return cadena2;}
+        else{
+            //Iniciamos busqueda por izquierda
+            coincidencia = busquedaIzquierda(cadena2,cadena1);
+            if(coincidencia !== -1){return coincidencia}
+            else{
+                //Iniciamos busqueda por derecha
+                coincidencia = busquedaDerecha(cadena2,cadena1);
+                if(coincidencia !==-1){return coincidencia;}
+                else{return false;}
+            }
+        }
+    }//fin else
+
+    /*Nota: AUN FALTA UNA FORMA DE BUSCAR UN PATRON
+    Y ES INTERCALANDO LA FORMA EN COMO QUITAMOS UNA 
+    LETRA DE LA CADENA, ES DECIR, PRIMERO QUITAMOS UNA DE 
+    LA IZQUIERDA, PREGUNTAMOS, QUITAMOS UNA LETRA DE LA DERECHA
+    esto es debido a que en ocasiones, el patron se encuentra
+    JUSTAMENTE, enmedio de la cadena más chica quitando
+    caraccteres tanto de la izquierda como de la derecha
+    */
+}
+
+//console.log(busquedaPatron("abcTUV","xyabcwf"));
+//console.log(busquedaPatron("a","b"));
+
+
+/*.Tengo que retornar los caracteres que van antes, despues o ambos
+a partir del patron recibido en la cadena igualmente recibida
+*/
+function rescateCaracteres(patron,cadena){
+    let indice = cadena.indexOf(patron);
+    let aux1;
+    /*Si el patron esta al inicio de la cadena*/
+    if(indice === 0){
+        aux1 = cadena.substring(patron.length,cadena.length);
+        return aux1;
+    }
+
+    /*Si el patron ESTA enmedio de la cadena.*/
+    //Obtengo la parte de la izquierda primero.
+
+    aux1 = cadena.substring(0,indice);
+    /*Tengo que validar si el patron no estaba en la parte final de la
+    cadena original, para eso tengo que ver si la suma de la 
+    longuitud del patron + longuitud de aux es igual a la
+    longuitud de la cadena original
+    Si son iguales SIGNIFICA que el patron estuvo al final de la cadena
+    y solo se rescato la parte izquierda.
+
+    SI ES MENOR, tengo ahora que rescatar los caracteres a la derecha
+    del patron, puesto que aun hay letras en la cadena.
+    */
+    if((aux1.length + patron.length) === cadena.length){
+        return aux1;
+    }
+    //Obtengo el resto de los caracteres
+    let aux2 = cadena.substring((indice + patron.length),cadena.length);
+
+    return aux1+aux2;
+}//fin rescateCaracteres();
+
+/*Caso 1 --> patron al inicio*/
+// let patron = "abc";
+// let cadena = "abcexyz";
+// console.log(rescateCaracteres(patron,cadena));
+
+/*Caso 2 --> patron al final de la cadena*/
+// let patron = "abc";
+// let cadena = "XYZGFabc";
+// console.log(rescateCaracteres(patron,cadena));
+
+
+/*Caso 2 --> patron al final de la cadena*/
+// let patron = "abc";
+// let cadena = "XYZQWabcGF123";
+// console.log(rescateCaracteres(patron,cadena));
+
+function problema28(cadena1,cadena2){
+    /*Este problema se dividira en varios modulos*/
+
+    //Modulo 1 --> busqueda de patron
+    let patron = busquedaPatron(cadena1,cadena2);
+    
+    /*Si no hay coincidencia entre las cadenas, solo las concatenamos
+    de forma sencilla.
+    */
+    if(patron === false){
+        //Concatenamos.
+        console.log("No hubo patron encontrado");
+        console.log("El resultado es "+cadena1.concat(cadena2));
+        return;
+    }
+
+    /*Si el patron encontrado es lo mismo en cadena 1
+    y en cadena 2 solo regresamos el patron*/
+    if(patron === cadena1 && patron === cadena2){
+        console.log("El resultado es "+patron);
+        return;
+    }
+
+    //Modulo 2 --> rescate de caracteres sobrantes de cada cadena
+    //Caracteres sobrantes de cadena1
+    let sobrante_cadena1 = rescateCaracteres(patron,cadena1);
+    let sobrante_cadena2 = rescateCaracteres(patron,cadena2);
+
+
+    //Modulo 3 --> concatenacion de los sobrantes
+    console.log("El patron es: "+patron);
+    console.log("El resultado de la mezcla es "+(sobrante_cadena1+patron+sobrante_cadena2));
+}
+
+// problema28("abcde","cdefgh");
+// problema28("abaab","aabab");
+// problema28("abc","def");
+// problema28("abc","abc");
+
