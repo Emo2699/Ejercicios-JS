@@ -105,3 +105,109 @@ QUE UNA NodeList[] es igual a un Array[]*/
 /*****************************************************/
 
 /*      CONTENIDO DE LA CLASE 63        */
+/*
+
+
+
+
+*/
+/*Accedo a la etiqueta lang ddel HTML con notacion punto*/
+//console.log(document.documentElement.lang);
+/*Otra forma de hacerlo*/
+//console.log(document.documentElement.getAttribute("lang"));
+
+//console.log(document.querySelector(".link-dom").href);
+
+/*La diferencia con el metodo getAttribute es que me trado el valor
+o la cadena que esta en el atributo que le indicamos, es decir,
+la cadena de la pagina como tal.
+Arriba nos arrojo el valor de toda la ip a la que apuntaba el valor
+del atributo que se le paso como argumento*/
+//console.log(document.querySelector(".link-dom").getAttribute("href"));
+/*
+    DIFERENCIA ENTRE getAttribute y notacion punto
+*/
+
+
+//ESTABLECIENDO NUEVOS VALORES A LOS ATRIBUTOS
+/*El resultado lo vemos en la consola del navehador, en la seccion de 
+elementos.*/
+
+//notacion punto
+//document.documentElement.lang="en"
+
+//con getAttribute
+//document.documentElement.setAttribute("lang","es-MX");
+
+//Uso de variables para almacenar lo que traemos del DOM, puede ser const o let
+//Recomendacion, variables del DOM anteponerle $
+//const $linkDom = document.querySelector(".link-dom");
+//Si no existe el atributo lo pone y le asigna valor
+//$linkDom.setAttribute("target","_blank");
+//$linkDom.setAttribute("rel","noopener");
+//Si existe el atributo, le cambia unicamente el valor
+//$linkDom.setAttribute("href","https://www.google.com.mx");
+
+//Verificacion de exstencia de atributos
+//console.log($linkDom.hasAttribute("rel"));
+
+//Eliminacion de atributos
+//$linkDom.removeAttribute("rel");
+
+//console.log($linkDom.hasAttribute("rel"));
+
+//Data-Attributes
+//console.log($linkDom.getAttribute("data-description"));
+//console.log($linkDom.dataset);
+//console.log($linkDom.dataset.description);
+//Establecer nuevos valores
+//$linkDom.setAttribute("data-description","DOM");
+//$linkDom.dataset.description="Holi";
+
+
+/*      CONTENIDO DE LA CLASE 64        */
+//ESTILOS Y VARIABLES CSS
+//const $linkDom = document.querySelector(".link-dom");
+
+/*Regresa un objeto CSSStyleDeclaration, el cual es un mapa en JS*/
+//console.log($linkDom.style);
+//console.log($linkDom.getAttribute("style"));//Solo arroja lo que hay en el HTML enn dicho atributo
+//console.log($linkDom.style.backgroundColor);//En formato RGB
+//console.log($linkDom.style.color); ///En formato RGB
+
+/*Al igual que console.log($linkDom.style);, tambien nos arroja
+un mapa de todas las propiedades css del elementos que le pasamos,
+sin embargo, la diferencia es que podemos apreciar los valores
+asignados por defecto del navegador a nuestro elemento*/
+
+//console.log(window.getComputedStyle($linkDom));
+//console.log(getComputedStyle($linkDom).getPropertyValue("color"));
+
+//Establecer valores
+//$linkDom.style.setProperty("text-decoration","none");//quita el subrayado del link
+//$linkDom.style.setProperty("display","block");
+//$linkDom.style.width="50%";
+//$linkDom.style.textAlign="center";
+//$linkDom.style.marginLeft="auto";
+//$linkDom.style.marginRight="auto";
+//$linkDom.style.padding="1rem";
+//$linkDom.style.borderRadius=".9rem";
+//console.log($linkDom.getAttribute("style"));
+
+//Variables CSS --> Custom Properties
+//const $html = document.documentElement,$body = document.body;
+//console.log(getComputedStyle($html));
+//let DarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+//let YellowColor = getComputedStyle($html).getPropertyValue("--yellow-color");
+
+//console.log(DarkColor,YellowColor);
+
+//$body.style.backgroundColor = DarkColor;
+//$body.style.color = YellowColor;
+
+//Modificacion del valor de las variables.
+
+//$html.style.setProperty("--dark-color","pink");
+//DarkColor = getComputedStyle($html).getPropertyValue("--dark-color");
+
+//$body.style.setProperty("background-color",DarkColor);
