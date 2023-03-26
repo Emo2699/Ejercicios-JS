@@ -1093,3 +1093,93 @@ function problema28(cadena1,cadena2){
 // problema28("abc","def");
 // problema28("abc","abc");
 
+/*      PROBLEMA 29     */
+//Snake case --> hola_a_todos
+//lowerCamelCase --> holaComoEstan;
+function splitPropio(cadena,caracter){
+    let inicio,fin = 0;
+    let cadenas = [];
+    let aux;
+    if(cadena.includes(caracter)){
+        for(let indice = 0; indice < cadena.length; indice ++){
+            if(cadena[indice] === caracter){
+                //separamos la cadena hasta donde esta el guion bajo
+                fin = indice;
+                aux = cadena.substring(inicio,fin);
+                inicio = indice+1;
+    
+                //la cadena aux la agregamos al arreglo cadenas[]
+                cadenas.push(aux);
+            }
+        }
+        aux = cadena.substring(inicio,cadena.length);
+        cadenas.push(aux);
+        return cadenas;
+    }
+    console.error(`No se puede separar la cadena con el caracter ${caracter} porque no se encuentra en la cadena`);
+    return;
+}
+
+function problema29(cadena){
+    if(typeof(cadena) != 'string'){
+        console.error("La cadena ingresada no es de tipo strng -_-");
+        return;
+    }
+    //Primero debemos saber en que formato viene, entonces
+    //preguntamos si tiene "_" la cadena haciendo alucion 
+    //a snake case
+    if(cadena.includes("_")){
+        //proceso de cambio a lowerCamelCase
+        let cadenas = cadena.split("_");
+        let resultado = cadenas[0];
+        for(let indice = 1; indice < cadenas.length; indice++){
+            resultado+= (cadenas[indice][0].toUpperCase() + cadenas[indice].substring(1));
+        }
+        //console.log(resultado);
+        return resultado;
+    }
+    //Verificamos si tiene mayusculas
+    let regex = /[A-Z]/;
+    if(regex.test(cadena)){
+        //Verificamos si la primer letra de la cadena es mayuscula
+        //porque en este caso, significaria que solo es una palabra
+        //asi que si se cumple, solo regresamos la cadena en minusculas
+        if(regex.test(cadena[0])){return cadena.toLowerCase()}
+
+        //proceso a snake case
+        //Separacion de palabras
+        let cadenas = [],aux = "";
+        let inicio,fin = 0,bandera = false;
+        for(let indice = 0; indice < cadena.length; indice++){
+            if(regex.test(cadena[indice])){
+                fin = indice;
+                aux = cadena.substring(inicio,fin);
+                inicio=fin;
+                //Agregamos la cadena extraida al arreglo
+                cadenas.push(aux);
+            }
+        }
+        //Recuperamos la ultima cadena
+        aux = cadena.substring(inicio,cadena.length);
+        cadenas.push(aux);
+        //console.log(cadenas); //Visualizacion del arreglo con las palabras separadas
+
+        //conversion a snakecase
+        let resultado = cadenas[0];
+        for(let i = 1; i < cadenas.length;i++){
+            resultado+= "_"+(cadenas[i][0].toLowerCase() + cadenas[i].substring(1));
+        }
+        //console.log(resultado);
+        return resultado;
+    }
+    console.log("No la podemos convertir ya que no viene en ningun formato -_-");
+    return cadena;
+}//fin problema29()
+// let prueba1 = "hola_a_todos";
+// let prueba2 = "documentoVersionErick";
+// let prueba3 = "Marzo";
+
+// console.log(problema29(prueba1));
+// console.log(problema29(prueba2));
+// console.log(problema29(prueba3));
+
